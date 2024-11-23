@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './component/Header';
+import DayList from './component/DayList';
+import Day from './component/Day';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import EmptyPage from './component/EmptyPage';
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<DayList />} />
+        {/* 동적라우팅하기 위해서   */}
+        <Route path="/day/:day" element={<Day />} />
+
+         {/* 이외에 url이 들어오면 받아들이는 페이지 */}
+         <Route path="/*" element={<EmptyPage />} />
+      </Routes>
+    </div>  
+  </BrowserRouter>
   );
 }
 
