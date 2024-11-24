@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 function DayList(props) {
    const days =  useFetch('http://localhost:3010/days')
+ 
+   // 느리면 로딩 글자 나오게 하지  
+   if(days.length === 0){
+    return <span>Loading...</span>
+}
     // const[days, setDays] = useState([]);
         
     //   useEffect(() => {

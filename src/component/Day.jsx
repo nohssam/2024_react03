@@ -20,6 +20,7 @@ function Day(props) {
     return (
         <>
             <h2> Day {day}</h2>
+            {words.length === 0 && <span>Loading...</span>}
             <table>
                 <tbody>
                     {/* map은 배열의 요소를 하나씩 추출 처리 할때 사용 ,

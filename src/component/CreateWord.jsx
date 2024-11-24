@@ -1,14 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 function CreateWord(props) {
     const days = useFetch("http://localhost:3010/days");
     const history = useNavigate();
+    const [isLoading, setIsLoading] = useState(false)
 
     // 기본 새로고침 막아줌
     function onSubmit(e) {
       e.preventDefault();
 
+      if(! isLoading){
+        setIsLoading(true);
       console.log(engRef.current.value)
       console.log(korRef.current.value)
       console.log(dayRef.current.value)
@@ -29,8 +32,10 @@ function CreateWord(props) {
         if(res.ok){
            alert("생성이 완료 되었습니다.");
            history(`/day/${dayRef.current.value}`)
+           setIsLoading(false)
         }
        });
+      }
     }
     const engRef = useRef(null);
     const korRef = useRef(null);
@@ -55,7 +60,9 @@ function CreateWord(props) {
             ))}
           </select>
         </div>
-        <button>저장</button>
+        <button
+           style={{opacity:isLoading?0.3 : 1}}
+        >{isLoading ? "Saving..." : "저장"}</button>
       </form>
     );
 }
