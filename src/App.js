@@ -3,6 +3,8 @@ import './App.css';
 import Header from './component/Header';
 import DayList from './component/DayList';
 import Day from './component/Day';
+import CreateWord from './component/CreateWord';
+import CreateDay from './component/CreateDay';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           {/* 동적라우딩 */}
           <Route path='/day/:day' element={<Day />} />
 
+          <Route path='/create_word' element={<CreateWord />} />
+          <Route path='/create_day' element={<CreateDay />} />
         </Routes>
       </div>
     </BrowserRouter>
